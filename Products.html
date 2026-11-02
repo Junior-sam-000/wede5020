@@ -1,68 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-        content="width=device-width, initial-
-        scale=1.0">
-        <title>products - Kota Joe</title>
-        <link rel="stylesheet" href="style.css">
-        
-    </head>
-    <body style="background-color: rgb(143, 97, 186);" class="Products-page">
-        <header><h1>Kota Joe</h1></header>
-        <nav>
-             <a href="Homepage.html">Homepage|</a>
-            <a href="About us.html">About us </a>
-            <a href="Products.html">products </a>
-            <a href="Gallery.html">Gallery </a>
-            <a href="News.html">News </a>
-            <a href="Contact Us.html">Contact Us </a>
-           <a href="Services.html">Services </a>
-        </nav>
 
-        <main>
-            <h2>Our Manu</h2>
-            <table>
-                <tr><th>Product</th>
-                <th>Description</th>
-                <th>Price</th>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Images/Image A.webp"alt="Quater Kota"width="150"
-                    class="responsive-img" srcset="Images/Image A.webp 480w,
-                     Images/Image A.webp768w" sizes="(max-width:480px) 100vw 33vw">
-                <br>Quater Kota</td>
-                <td>Chips, Cheese, Polony + Joe Sauce</td>
-                <td>R45</td>
-            </tr>
-            <tr>
-                <td> 
-                    <img src="Images/Image D.webp" alt="Half Kota"
-                    width="150" class="responsive-img">
-                    <br>Half Kota Special</td>
-                    <td>Vienna, russian, Chips, Cheese, 2 sauces</td>
-                    <td>R60</td>
-                     </tr>
-            <tr>
-                <td>
-                    <img src="Images/Image E.webp" alt="Half Kota"
-                    width="150" class="responsive-img"> 
-                    <br>Half Kota Special</td>
-                    <td>Vienna, russian, Chips, Cheese, 2 sauces</td>
-                    <td>R65</td>
-                </td>
-            </tr>
-            <td>
-                <img src="Images/Image C.webp" alt="Full Kota"
-                width="150" class="responsive-img">
-                <br>Full Kota Joe Mega</td>
-                <td>Everything + Burger patty + slap Chips</td>
-                <td>R95</td>
-            </table>
-        </main>
-        <footer><p>&copy; 2026 Kota Joe. All rights reserved.</p></footer>
-        
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore Kota Joe's delicious South African kota meals, burgers, chips and affordable fast food.">
+    <meta name="keywords" content="Kota Joe Products, Kota Meals, South African Fast Food">
+
+    <title>Our Products | Kota Joe</title>
+    <link rel="stylesheet" href="style.css">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8ed;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffb323;
+    font-size: 38px;
+}
+
+nav {
+    background-color: #c93624;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffb323;
+}
+
+.intro {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.intro h2 {
+    color: #c93624;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+
+.slideshow-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.slideshow-section h2 {
+    color: #c93624;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.slideshow {
+    position: relative;
+    max-width: 750px;
+    height: 400px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #ccc;
+    background: #222;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 12px;
+    font-size: 20px;
+}
+
+.slide-button {
+    position: absolute;
+    top: 45%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 12px 17px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.slide-button:hover {
+    background: #c93624;
+}
+
+.previous {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.dots {
+    margin-top: 15px;
+}
+
+.dot {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: #bbb;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #c93624;
+}
+
+
+.products {
+    padding: 30px 8%;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.product-card {
+    background-color: white;
+    width: 270px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #ccc;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    color: #c93624;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #c93624;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #c93624;
+    color: white;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background-color: #ffb323;
+    color: black;
+}
+
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.lightbox-caption {
+    color: white;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.lightbox-button {
+    position: absolute;
+    top: 50%;
+    background: #c93624;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.lightbox-button:hover {
+    background: #ffb323;
+    color: black;
+}
+
+.lightbox-previous {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.special {
+    background-color: #ffe4b5;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
+}
+
+.special h2 {
+    color: #c93624;
+    font-size: 30px;
+}
+
+.cart {
+    background-color: white;
+    padding: 30px;
+    margin: 35px auto;
+    width: 85%;
+    max-width: 650px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+.cart h2 {
+    color: #c93624;
+    text-align: center;
+}
+
+.cart ul {
+    padding: 20px;
+}
+
+.cart li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+footer span {
+    color: #ffb323;
+}
+
+@media(max-width: 600px) {
+
+    nav a {
+        display: block;
+        margin: 10px;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .cart {
+        width: 95%;
+    }
+
+    .slideshow {
+        height: 260px;
+    }
+
+    .lightbox img {
+        max-width: 95%;
+    }
+
+    .lightbox-button {
+        padding: 8px 12px;
+        font-size: 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>KOTA JOE</h1>
+    <p>Big Flavour. Real Mzansi Taste!</p>
+</header>
+
+<nav>
+    <a href="Homepage.html">Homepage</a>
+    <a href="About US.html">About Us</a>
+    <a href="Services.html">Services</a>
+    <a href="Products.html">Products</a>
+    <a href="Gallery.html">Gallery</a>
+    <a href="News.html">News</a>
+    <a href="Contact Us.html">Contact Us</a>
+</nav>
+
+<section class="intro">
+
+    <h2>OUR PRODUCTS</h2>
+
+    <p>
+        Welcome to the Kota Joe menu!
+
+        Discover our delicious South African kota meals
+        prepared with tasty ingredients and fresh flavours.
+
+        There is something for everyone!
+    </p>
+
+</section>
+
+
+<section class="slideshow-section">
+
+    <h2>Explore Our Delicious Meals</h2>
+
+    <div class="slideshow" id="slideshow">
+
+        <div class="slide active">
+            <img src="Images/Image9 (2).jpeg"
+                 alt="Classic Kota"
+                 onclick="openLightbox(0)">
+            <div class="slide-caption">Classic Kota</div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image11.jpeg"
+                 alt="Cheese Kota"
+                 onclick="openLightbox(1)">
+            <div class="slide-caption">Cheese Kota</div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image10.jpeg"
+                 alt="Special Kota"
+                 onclick="openLightbox(2)">
+            <div class="slide-caption">Special Kota</div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image12.jpeg"
+                 alt="Joe's Mega Kota"
+                 onclick="openLightbox(3)">
+            <div class="slide-caption">Joe's Mega Kota</div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image13.jpeg"
+                 alt="Large Chips"
+                 onclick="openLightbox(4)">
+            <div class="slide-caption">Large Chips</div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+                 alt="Joe's Burger"
+                 onclick="openLightbox(5)">
+            <div class="slide-caption">Joe's Burger</div>
+        </div>
+
+        <button class="slide-button previous"
+                onclick="changeSlide(-1)"
+                aria-label="Previous slide">&#10094;</button>
+
+        <button class="slide-button next"
+                onclick="changeSlide(1)"
+                aria-label="Next slide">&#10095;</button>
+
+    </div>
+
+    <div class="dots">
+
+        <span class="dot active" onclick="showSlide(0)"></span>
+        <span class="dot" onclick="showSlide(1)"></span>
+        <span class="dot" onclick="showSlide(2)"></span>
+        <span class="dot" onclick="showSlide(3)"></span>
+        <span class="dot" onclick="showSlide(4)"></span>
+        <span class="dot" onclick="showSlide(5)"></span>
+
+    </div>
+
+</section>
+
+<section class="products">
+
+    <div class="product-container">
+
+        <div class="product-card">
+
+            <img src="Images/Image9 (2).jpeg"
+                 alt="Classic kota with chips"
+                 onclick="openLightbox(0)">
+
+            <div class="product-info">
+
+                <h3>Classic Kota</h3>
+
+                <p>
+                    Fresh bread filled with crispy chips,
+                    polony and delicious sauce.
+                </p>
+
+                <p class="price">R35.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Classic Kota', 35)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+        <div class="product-card">
+
+            <img src="Images/Image11.jpeg"
+                 alt="Cheese Kota"
+                 onclick="openLightbox(1)">
+
+            <div class="product-info">
+
+                <h3>Cheese Kota</h3>
+
+                <p>
+                    A tasty kota filled with cheese,
+                    chips and special sauce.
+                </p>
+
+                <p class="price">R45.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Cheese Kota', 45)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+        <div class="product-card">
+
+            <img src="Images/Image10.jpeg"
+                 alt="Special Kota"
+                 onclick="openLightbox(2)">
+
+            <div class="product-info">
+
+                <h3>Special Kota</h3>
+
+                <p>
+                    A loaded kota with tasty fillings,
+                    fresh ingredients and sauce.
+                </p>
+
+                <p class="price">R55.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Special Kota', 55)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+        <div class="product-card">
+
+            <img src="Images/Image12.jpeg"
+                 alt="Joe's Mega Kota"
+                 onclick="openLightbox(3)">
+
+            <div class="product-info">
+
+                <h3>Joe's Mega Kota</h3>
+
+                <p>
+                    Our large kota packed with delicious
+                    fillings for a satisfying meal.
+                </p>
+
+                <p class="price">R65.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Joe Mega Kota', 65)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+        <div class="product-card">
+
+            <img src="Images/Image13.jpeg"
+                 alt="Golden crispy chips"
+                 onclick="openLightbox(4)">
+
+            <div class="product-info">
+
+                <h3>Large Chips</h3>
+
+                <p>
+                    Golden crispy chips served
+                    with our special sauce.
+                </p>
+
+                <p class="price">R25.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Large Chips', 25)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+        <div class="product-card">
+
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+                 alt="Burger meal"
+                 onclick="openLightbox(5)">
+
+            <div class="product-info">
+
+                <h3>Joe's Burger</h3>
+
+                <p>
+                    A delicious burger with fresh
+                    ingredients and tasty sauce.
+                </p>
+
+                <p class="price">R40.00</p>
+
+                <button class="btn"
+                        onclick="addToCart('Joes Burger', 40)">
+                    Add to Order
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="lightbox" id="lightbox"
+     onclick="closeLightbox(event)">
+
+    <button class="close-lightbox"
+            onclick="hideLightbox()"
+            aria-label="Close lightbox">&times;</button>
+
+    <button class="lightbox-button lightbox-previous"
+            onclick="lightboxChange(-1, event)"
+            aria-label="Previous image">&#10094;</button>
+
+    <img id="lightboxImage" src="" alt="">
+
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+
+    <button class="lightbox-button lightbox-next"
+            onclick="lightboxChange(1, event)"
+            aria-label="Next image">&#10095;</button>
+
+</div>
+
+<section class="special">
+
+    <h2>Special Kota Joe Offer!</h2>
+
+    <p>
+        Enjoy delicious meals at affordable prices.
+
+        Visit Kota Joe and experience
+        the real taste of South Africa!
+    </p>
+
+</section>
+
+<section class="cart">
+
+    <h2>YOUR ORDER</h2>
+
+    <ul id="cartItems">
+        <li>Your order is empty.</li>
+    </ul>
+
+    <h3>Total: R<span id="total">0.00</span></h3>
+
+    <button class="btn" onclick="clearCart()">
+        Clear Order
+    </button>
+
+</section>
+
+<footer>
+
+    <h3>KOTA JOE</h3>
+
+    <p>Big Flavour. Real Mzansi Taste!</p>
+
+    <p>
+        &copy; 2026 <span>Kota Joe</span>.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+<script>
+
+const productImages = [
+    {
+        src: "Images/Image9 (2).jpeg",
+        name: "Classic Kota"
+    },
+    {
+        src: "Images/Image11.jpeg",
+        name: "Cheese Kota"
+    },
+    {
+        src: "Images/Image10.jpeg",
+        name: "Special Kota"
+    },
+    {
+        src: "Images/Image12.jpeg",
+        name: "Joe's Mega Kota"
+    },
+    {
+        src: "Images/Image13.jpeg",
+        name: "Large Chips"
+    },
+    {
+        src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+        name: "Joe's Burger"
+    }
+];
+
+
+let currentSlide = 0;
+let slideTimer;
+
+function showSlide(index) {
+
+    let slides = document.querySelectorAll(".slide");
+    let dots = document.querySelectorAll(".dot");
+
+    currentSlide = (index + slides.length) % slides.length;
+
+    slides.forEach(function(slide) {
+        slide.classList.remove("active");
+    });
+
+    dots.forEach(function(dot) {
+        dot.classList.remove("active");
+    });
+
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+}
+
+function changeSlide(direction) {
+
+    showSlide(currentSlide + direction);
+    resetSlideTimer();
+
+}
+
+function resetSlideTimer() {
+
+    clearInterval(slideTimer);
+
+    slideTimer = setInterval(function() {
+        showSlide(currentSlide + 1);
+    }, 4000);
+
+}
+
+resetSlideTimer();
+
+
+
+let lightboxIndex = 0;
+
+function openLightbox(index) {
+
+    lightboxIndex = index;
+
+    clearInterval(slideTimer);
+
+    updateLightbox();
+
+    document.getElementById("lightbox").classList.add("show");
+
+}
+
+function updateLightbox() {
+
+    let image = document.getElementById("lightboxImage");
+    let caption = document.getElementById("lightboxCaption");
+
+    image.src = productImages[lightboxIndex].src;
+    image.alt = productImages[lightboxIndex].name;
+
+    caption.textContent = productImages[lightboxIndex].name;
+
+}
+
+function hideLightbox() {
+
+    document.getElementById("lightbox").classList.remove("show");
+
+    resetSlideTimer();
+
+}
+
+function closeLightbox(event) {
+
+    if (event.target.id === "lightbox") {
+        hideLightbox();
+    }
+
+}
+
+function lightboxChange(direction, event) {
+
+    event.stopPropagation();
+
+    lightboxIndex =
+        (lightboxIndex + direction + productImages.length)
+        % productImages.length;
+
+    updateLightbox();
+
+}
+
+
+document.addEventListener("keydown", function(event) {
+
+    let lightbox = document.getElementById("lightbox");
+
+    if (!lightbox.classList.contains("show")) {
+        return;
+    }
+
+    if (event.key === "Escape") {
+        hideLightbox();
+    }
+
+    if (event.key === "ArrowRight") {
+        lightboxChange(1, event);
+    }
+
+    if (event.key === "ArrowLeft") {
+        lightboxChange(-1, event);
+    }
+
+});
+
+
+let cart = [];
+
+function addToCart(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    updateCart();
+
+    alert(name + " added to your order!");
+
+}
+
+function updateCart() {
+
+    let cartItems = document.getElementById("cartItems");
+
+    let total = 0;
+
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = "<li>Your order is empty.</li>";
+
+    }
+
+    cart.forEach(function(item) {
+
+        let li = document.createElement("li");
+
+        li.textContent = item.name + " - R" +
+            item.price.toFixed(2);
+
+        cartItems.appendChild(li);
+
+        total += item.price;
+
+    });
+
+    document.getElementById("total").textContent =
+        total.toFixed(2);
+
+}
+
+function clearCart() {
+
+    cart = [];
+
+    updateCart();
+
+    alert("Your order has been cleared!");
+
+}
+
+</script>
+
+</body>
 </html>
