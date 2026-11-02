@@ -1,57 +1,775 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"><meta
-        name="viewport" content="width=device-width,
-        initial-scale=1.0">
-        <title>Gallery - Kota Joe</title>
-        <link rel="stylesheet" href="style.css">
-        
-    </head>
-    <body style="background-color: rgb(225, 235, 89);" class="Gallery-page">
-        <header><h1> Kota Joe</h1><p>Big Kotas. Bigger Flavours.</p></header>
-        <nav>
-             <a href="Homepage.html">Homepage|</a>
-            <a href="About us.html">About us </a>
-            <a href="Products.html">products </a>
-            <a href="Gallery.html">Gallery </a>
-            <a href="News.html">News </a>
-            <a href="Contact Us.html">Contact Us </a>
-           <a href="Services.html">Services </a>
-        </nav>
 
-        <main>
-            <h2>Gallery</h2>
-            <div class="gallery-grid">
-                
-                <img src="Images/Image B.webp"
-                alt="Mega Kota with Chips" 
-                class="responsive-img">
-                <h3>Made with passion</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                <img src="Images/Image C.webp"
-                alt="Joe making kota"
-                class="responsive-img">
-                <h3>Delicious kota in the country</h3>
+    <title>Kota Joe | Gallery</title>
+    <link rel="stylesheet" href="style.css">
 
-                <img src="Images/Image D.webp"
-                alt="Kota Joe Storefront"
-                class="responsive-img">
-                <h3>Taste with Love</h3>
+    <style>
 
-                <img src="Images/Image E.webp"
-                alt="Happy customers"
-                class="responsive-img">
-                <h3>Every bite tells a story</h3>
+        * {
+            box-sizing: border-box;
+        }
 
-                <img src="Images/Image A.webp"
-                alt="Secret Joe Sauce"
-                class="responsive-img">
-                <h3>Fresh ingredients,Unforgettable taste</h3>
-                
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff8ed;
+            color: #333;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            color: #ffb323;
+            margin-bottom: 5px;
+        }
+
+        nav {
+            background-color: #c93624;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffb323;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .intro h2 {
+            color: #c93624;
+            font-size: 30px;
+        }
+
+        .slideshow-container {
+            max-width: 850px;
+            position: relative;
+            margin: 20px auto 40px;
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 45%;
+            padding: 15px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            font-size: 25px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: #c93624;
+        }
+
+        .dots {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .dot {
+            height: 13px;
+            width: 13px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #c93624;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px 40px 40px;
+        }
+
+        .gallery-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item h3 {
+            color: #c93624;
+            padding: 10px;
+        }
+
+        .gallery-item p {
+            padding: 0 12px 15px;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-caption {
+            color: white;
+            font-size: 20px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            color: white;
+            font-size: 35px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .lightbox-prev {
+            left: 15px;
+        }
+
+        .lightbox-next {
+            right: 15px;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer span {
+            color: #ffb323;
+        }
+
+        @media (max-width: 700px) {
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 15px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            .slide img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .slide img {
+                height: 230px;
+            }
+
+            .lightbox img {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <header>
+        <h1>KOTA JOE</h1>
+        <p>Big Flavour. Real Mzansi Taste!</p>
+    </header>
+
+
+    <nav>
+
+        <a href="Homepage.html">Homepage</a>
+
+        <a href="About US.html">About Us</a>
+
+        <a href="Services.html">Services</a>
+
+        <a href="Products.html">Products</a>
+
+        <a href="Gallery.html">Gallery</a>
+
+        <a href="News.html">News</a>
+
+        <a href="Contact Us.html">Contact Us</a>
+
+    </nav>
+
+
+    <section class="intro">
+
+        <h2>Our Gallery</h2>
+
+        <p>
+            Welcome to the Kota Joe Gallery! Explore pictures
+            of our delicious food, tasty kota combinations
+            and the flavours we offer.
+        </p>
+
+    </section>
+
+
+    <h2 style="text-align:center; color:#c93624;">
+        Featured Food Slideshow
+    </h2>
+
+    <div class="slideshow-container" id="slideshow">
+
+        <div class="slide">
+            <img src="Images/Image5.jpeg"
+                 alt="Classic Kota"
+                 onclick="openLightbox(0)">
+
+            <div class="slide-caption">
+                Classic Kota
             </div>
-        </main>
-        <footer><p>&copy; 2026 Kota Joe. All rights reserved.</p></footer>
-        
-    </body>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image2.webp"
+                 alt="Cheese Kota"
+                 onclick="openLightbox(1)">
+
+            <div class="slide-caption">
+                Cheese Kota
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image3.jpeg"
+                 alt="Special Kota"
+                 onclick="openLightbox(2)">
+
+            <div class="slide-caption">
+                Special Kota
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image1.jpg"
+                 alt="Golden Chips"
+                 onclick="openLightbox(3)">
+
+            <div class="slide-caption">
+                Golden Chips
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image4.jpeg"
+                 alt="Joe's Mega Meal"
+                 onclick="openLightbox(4)">
+
+            <div class="slide-caption">
+                Joe's Mega Meal
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="Images/Image6.jpeg"
+                 alt="Fresh Food"
+                 onclick="openLightbox(5)">
+
+            <div class="slide-caption">
+                Fresh Food
+            </div>
+        </div>
+
+
+        <button class="prev" onclick="changeSlide(-1)">
+            &#10094;
+        </button>
+
+        <button class="next" onclick="changeSlide(1)">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <div class="dots">
+
+        <span class="dot" onclick="currentSlide(0)"></span>
+
+        <span class="dot" onclick="currentSlide(1)"></span>
+
+        <span class="dot" onclick="currentSlide(2)"></span>
+
+        <span class="dot" onclick="currentSlide(3)"></span>
+
+        <span class="dot" onclick="currentSlide(4)"></span>
+
+        <span class="dot" onclick="currentSlide(5)"></span>
+
+    </div>
+
+
+    <section class="gallery">
+
+        <div class="gallery-item">
+
+            <img src="Images/Image5.jpeg"
+                 alt="Classic Kota"
+                 onclick="openLightbox(0)">
+
+            <h3>Classic Kota</h3>
+
+            <p>
+                A delicious meal inspired by South African street food.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="Images/Image2.webp"
+                 alt="Cheese Kota"
+                 onclick="openLightbox(1)">
+
+            <h3>Cheese Kota</h3>
+
+            <p>
+                A tasty combination with a cheesy flavour.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="Images/Image3.jpeg"
+                 alt="Special Kota"
+                 onclick="openLightbox(2)">
+
+            <h3>Special Kota</h3>
+
+            <p>
+                A satisfying meal packed with flavour.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="Images/Image1.jpg"
+                 alt="Golden Chips"
+                 onclick="openLightbox(3)">
+
+            <h3>Golden Chips</h3>
+
+            <p>
+                Crispy golden chips served as a tasty side.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="Images/Image4.jpeg"
+                 alt="Joe's Mega Meal"
+                 onclick="openLightbox(4)">
+
+            <h3>Joe's Mega Meal</h3>
+
+            <p>
+                A filling meal for customers with a big appetite.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="Images/Image6.jpeg"
+                 alt="Fresh Food"
+                 onclick="openLightbox(5)">
+
+            <h3>Fresh Food</h3>
+
+            <p>
+                Enjoy delicious food prepared with care.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <div class="lightbox" id="lightbox"
+         role="dialog" aria-modal="true"
+         aria-label="Image viewer"
+         onclick="closeLightbox(event)">
+
+        <button class="close-lightbox"
+                onclick="hideLightbox()"
+                aria-label="Close image viewer">
+            &times;
+        </button>
+
+        <button class="lightbox-prev"
+                onclick="lightboxChange(-1, event)"
+                aria-label="Previous image">
+            &#10094;
+        </button>
+
+        <img id="lightbox-image" src="" alt="">
+
+        <div class="lightbox-caption"
+             id="lightbox-caption">
+        </div>
+
+        <button class="lightbox-next"
+                onclick="lightboxChange(1, event)"
+                aria-label="Next image">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <footer>
+
+        <p>
+            &copy; 2026 <span>Kota Joe</span>.
+            All Rights Reserved.
+        </p>
+
+        <p>Big Flavour. Real Mzansi Taste!</p>
+
+    </footer>
+
+
+    <script>
+
+        let slideIndex = 0;
+
+        let slideTimer;
+
+        const slides = document.querySelectorAll(".slide");
+
+        const dots = document.querySelectorAll(".dot");
+
+
+        function showSlides(index) {
+
+            if (index >= slides.length) {
+                slideIndex = 0;
+            }
+
+            if (index < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            slides.forEach(slide => {
+                slide.style.display = "none";
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove("active");
+            });
+
+            slides[slideIndex].style.display = "block";
+
+            dots[slideIndex].classList.add("active");
+
+        }
+
+
+        function changeSlide(n) {
+
+            slideIndex += n;
+
+            showSlides(slideIndex);
+
+            resetTimer();
+
+        }
+
+
+        function currentSlide(n) {
+
+            slideIndex = n;
+
+            showSlides(slideIndex);
+
+            resetTimer();
+
+        }
+
+
+        function startTimer() {
+
+            slideTimer = setInterval(function () {
+
+                slideIndex++;
+
+                showSlides(slideIndex);
+
+            }, 4000);
+
+        }
+
+
+        function resetTimer() {
+
+            clearInterval(slideTimer);
+
+            startTimer();
+
+        }
+
+
+        const slideshow = document.getElementById("slideshow");
+
+        slideshow.addEventListener("mouseenter", function () {
+            clearInterval(slideTimer);
+        });
+
+        slideshow.addEventListener("mouseleave", function () {
+            resetTimer();
+        });
+
+
+        const imageSources = [
+
+            "Images/Image5.jpeg",
+            "Images/Image2.webp",
+            "Images/Image3.jpeg",
+            "Images/Image1.jpg",
+            "Images/Image4.jpeg",
+            "Images/Image6.jpeg"
+
+        ];
+
+
+        const imageNames = [
+
+            "Classic Kota",
+            "Cheese Kota",
+            "Special Kota",
+            "Golden Chips",
+            "Joe's Mega Meal",
+            "Fresh Food"
+
+        ];
+
+
+        let lightboxIndex = 0;
+
+
+        function openLightbox(index) {
+
+            lightboxIndex = index;
+
+            document.getElementById("lightbox").style.display = "flex";
+
+            displayLightboxImage();
+
+            clearInterval(slideTimer);
+
+        }
+
+
+        function displayLightboxImage() {
+
+            const image = document.getElementById("lightbox-image");
+
+            const caption = document.getElementById("lightbox-caption");
+
+            image.src = imageSources[lightboxIndex];
+
+            image.alt = imageNames[lightboxIndex];
+
+            caption.textContent = imageNames[lightboxIndex];
+
+        }
+
+
+        function hideLightbox() {
+
+            document.getElementById("lightbox").style.display = "none";
+
+            resetTimer();
+
+        }
+
+
+        function lightboxChange(n, event) {
+
+            if (event) {
+                event.stopPropagation();
+            }
+
+            lightboxIndex += n;
+
+            if (lightboxIndex >= imageSources.length) {
+                lightboxIndex = 0;
+            }
+
+            if (lightboxIndex < 0) {
+                lightboxIndex = imageSources.length - 1;
+            }
+
+            displayLightboxImage();
+
+        }
+
+
+        function closeLightbox(event) {
+
+            if (event.target.id === "lightbox") {
+                hideLightbox();
+            }
+
+        }
+
+
+        document.addEventListener("keydown", function(event) {
+
+            const lightbox = document.getElementById("lightbox");
+
+            if (lightbox.style.display === "flex") {
+
+                if (event.key === "Escape") {
+                    hideLightbox();
+                }
+
+                if (event.key === "ArrowRight") {
+                    lightboxChange(1);
+                }
+
+                if (event.key === "ArrowLeft") {
+                    lightboxChange(-1);
+                }
+
+            }
+
+        });
+
+
+
+        showSlides(slideIndex);
+
+        startTimer();
+
+    </script>
+
+</body>
+
 </html>
